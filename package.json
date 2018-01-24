@@ -1,0 +1,23 @@
+{
+  "name": "sheety-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Components to run an app based on a representation of a spreadsheet... a sheety app.",
+  "author": "Adam Berger",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "create-react-class": "^15.6.2",
+    "react": "^16.2.0",
+    "react-data-grid": "^3.0.6",
+    "react-data-grid-addons": "^3.0.6",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

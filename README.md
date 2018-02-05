@@ -2,6 +2,7 @@
 [Sheety App](http://www.sheetyapp.com) is a suite of tools for building apps out of spreadsheets.  These aren't static, single-user apps though.  This is the real deal.  Multiple screens with arbitrarily complex navigation, authentication, user data storage, aggregate user data... we'll even generate an API from your sheets.
 
 Since you're here looking at this code, you're probably thinking: "This sounds great for a prototype but how the heck am I going to maintain and enhance this thing?"  Well, we focus on simplicity and modularity... and you're reading the code!  We have the following modules:
+ - Sheety Model - provides model types used in other modules
  - Sheety Modeler - generates a declarative model from a spreadsheet
  - Sheety Calculator - accepts that model and a current state, runs all modeled calculations, and generates the new state of every cell
  - *Sheety App* - React component that takes the model and, using the Sheety Calculator, renders the app, handling user data updates, authentication, aggregate data retrieval, etc.

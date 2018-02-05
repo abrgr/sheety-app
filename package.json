@@ -8,11 +8,18 @@
   "dependencies": {
     "bootstrap": "^4.0.0",
     "create-react-class": "^15.6.2",
+    "handsontable": "^0.35.1",
     "react": "^16.2.0",
     "react-data-grid": "^3.0.6",
     "react-data-grid-addons": "^3.0.6",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "sheety-calculator": "https://github.com/abrgr/sheety-calculator.git",
+    "sheety-model": "https://github.com/abrgr/sheety-model.git"
   },
   "scripts": {
     "start": "react-scripts start",

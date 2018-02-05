@@ -1,0 +1,3 @@
+export const REQUESTED_SHEET = 'REQUESTED_SHEET';
+export const RECEIVED_SHEET = 'RECEIVED_SHEET';
+export const SHEET_FAILED = 'SHEET_FAILED';

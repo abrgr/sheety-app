@@ -1,5 +1,7 @@
 import React, { cloneElement, Children } from 'react';
 import { connect } from 'react-redux';
+import { CellRefRange } from 'sheety-model';
+import { dataActions } from './action-creators';
 
 /**
  * Decorator used to wire up a Presenter.
@@ -15,8 +17,9 @@ import { connect } from 'react-redux';
  **/
 export default function presenter({ configKeyDocs, mapDataDocs, arrayDataDocs }) {
   return (Component) => (
-    () => (
+    (props) => (
       <PresenterContainer
+        {...props}
         configKeyDocs={configKeyDocs}
         mapDataDocs={mapDataDocs}
         arrayDataDocs={arrayDataDocs}>
@@ -28,7 +31,8 @@ export default function presenter({ configKeyDocs, mapDataDocs, arrayDataDocs })
 
 const PresenterContainer_ = (props) => {
   const mapData = getMapData(props.data, props.mapDataQuery);
-  const arrayData = getArrayData(props.data, props.arrayDataQuery);
+  const arrayData = getArrayData(props.calc, props.arrayDataQuery, props.arrayDataDocs);
+  const arrayCells = getArrayCells(props.calc, props.arrayDataQuery, props.arrayDataDocs);
 
   return cloneElement(
     Children.only(props.children),
@@ -36,7 +40,11 @@ const PresenterContainer_ = (props) => {
       config: preserveKeys(props.config, props.configKeyDocs),
       mapData: preserveKeys(mapData, props.mapDataDocs),
       arrayData,
-      sheet: props.sheet
+      arrayCells,
+      arrayDataQuery: props.arrayDataQuery,
+      mapDataQuery: props.mapDataQuery,
+      sheet: props.sheet,
+      setCellValues: setCellValues.bind(null, props.dispatch)
     }
   )
 };
@@ -44,17 +52,21 @@ const PresenterContainer_ = (props) => {
 const PresenterContainer = connect(
   ({ data }) => ({
     data: data.get('calculatedValues'),
-    sheet: data.get('sheet')
+    sheet: data.get('sheet'),
+    calc: data.get('calc')
   })
 )(PresenterContainer_);
 
 function preserveKeys(map, keySpec) {
-  return map; // TODO
+  return map && keySpec && map.filter(k => keySpec.has(k));
 }
 
-function getArrayData(data, query) {
-  // TODO: get the actual data from the calculator
-  const matrix = data.get('Valuator - Top-Down').toJS();
+function getArrayData(calc, query, docs) {
+  if ( !docs ) {
+    return null; // TODO: logging?
+  }
+
+  const matrix = calc.getRange(CellRefRange.fromA1Ref(query));
   const maxCols = matrix.reduce((max, row) => (
     !!row ? Math.max(max, row.length) : max
   ), 0);
@@ -62,6 +74,19 @@ function getArrayData(data, query) {
     const r = row || [];
     return r.concat(getSpacer(maxCols - r.length))
   });
+}
+
+function getArrayCells(calc, query, docs) {
+  if ( !docs ) {
+    return null;
+  }
+
+  const rangeRef = CellRefRange.fromA1Ref(query);
+  const sheet = calc.sheet;
+  return sheet.mapRange(
+    rangeRef,
+    sheet.getCell.bind(sheet)
+  );
 }
 
 function getSpacer(len) {
@@ -74,4 +99,8 @@ function getSpacer(len) {
 
 function getMapData(data, query) {
   return data;
+}
+
+function setCellValues(dispatch, valuesByCellRef) {
+  dispatch(dataActions.setCellValues(valuesByCellRef));
 }

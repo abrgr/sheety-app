@@ -20,10 +20,10 @@ class Presenter_ extends Component {
       );
     }
 
-    if ( presenter.id === 'table' ) {
+    if ( presenter.get('id') === 'table' ) {
       return (
         <Sheet
-          arrayDataQuery={presenter.arrayDataQuery} /> 
+          arrayDataQuery={presenter.get('arrayDataQuery')} /> 
       );
     }
 

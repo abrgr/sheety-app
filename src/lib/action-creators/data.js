@@ -1,4 +1,9 @@
-import { REQUESTED_SHEET, RECEIVED_SHEET, SHEET_FAILED } from '../actions';
+import {
+  REQUESTED_SHEET,
+  RECEIVED_SHEET,
+  SHEET_FAILED,
+  SET_CELL_VALUES
+} from '../actions';
 
 export function load(url) {
   return (dispatch) => {
@@ -14,5 +19,12 @@ export function load(url) {
     }).catch((err) => {
       dispatch({ type: SHEET_FAILED, err });
     });
+  };
+}
+
+export function setCellValues(valuesByCellRef) {
+  return {
+    type: SET_CELL_VALUES,
+    valuesByCellRef
   };
 }

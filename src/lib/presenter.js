@@ -15,14 +15,15 @@ import { dataActions } from './action-creators';
  *  - sheet - Sheet
  *  - config - config parameter
  **/
-export default function presenter({ configKeyDocs, mapDataDocs, arrayDataDocs }) {
+export default function presenter({ formatted, configKeyDocs, mapDataDocs, arrayDataDocs }) {
   return (Component) => (
     (props) => (
       <PresenterContainer
         {...props}
         configKeyDocs={configKeyDocs}
         mapDataDocs={mapDataDocs}
-        arrayDataDocs={arrayDataDocs}>
+        arrayDataDocs={arrayDataDocs}
+        formatted={formatted}>
         <Component />
       </PresenterContainer>
     )
@@ -31,7 +32,7 @@ export default function presenter({ configKeyDocs, mapDataDocs, arrayDataDocs })
 
 const PresenterContainer_ = (props) => {
   const mapData = getMapData(props.data, props.mapDataQuery);
-  const arrayData = getArrayData(props.calc, props.arrayDataQuery, props.arrayDataDocs);
+  const arrayData = getArrayData(props.calc, props.arrayDataQuery, props.formatted, props.arrayDataDocs);
   const arrayCells = getArrayCells(props.calc, props.arrayDataQuery, props.arrayDataDocs);
 
   return cloneElement(
@@ -61,12 +62,15 @@ function preserveKeys(map, keySpec) {
   return map && keySpec && map.filter(k => keySpec.has(k));
 }
 
-function getArrayData(calc, query, docs) {
+function getArrayData(calc, query, formatted, docs) {
   if ( !docs ) {
     return null; // TODO: logging?
   }
 
-  const matrix = calc.getRange(CellRefRange.fromA1Ref(query));
+  const a1Range = CellRefRange.fromA1Ref(query);
+  const matrix = formatted
+               ? calc.getFormattedRange(a1Range)
+               : calc.getRange(a1Range);
   const maxCols = matrix.reduce((max, row) => (
     !!row ? Math.max(max, row.length) : max
   ), 0);

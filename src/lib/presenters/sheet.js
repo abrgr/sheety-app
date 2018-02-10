@@ -47,6 +47,7 @@ class Sheet_ extends Component {
 }
 
 const Sheet = presenter({
+  formatted: true,
   arrayDataDocs: 'An A1 reference to the data to show'
 })(Sheet_);
 

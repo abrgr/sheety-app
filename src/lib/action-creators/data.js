@@ -22,7 +22,7 @@ export function load(url) {
   };
 }
 
-export function setCellValues(valuesByCellRef) {
+export function setCellValues(sheet, valuesByCellRef) {
   return {
     type: SET_CELL_VALUES,
     valuesByCellRef

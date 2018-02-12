@@ -1,7 +1,8 @@
 import React, { cloneElement, Children } from 'react';
 import { connect } from 'react-redux';
-import { CellRefRange } from 'sheety-model';
+import { CellRefRange, Presenter as PresenterModel } from 'sheety-model';
 import { dataActions } from './action-creators';
+import { PresenterRouter } from './components';
 
 /**
  * Decorator used to wire up a Presenter.
@@ -45,7 +46,8 @@ const PresenterContainer_ = (props) => {
       arrayDataQuery: props.arrayDataQuery,
       mapDataQuery: props.mapDataQuery,
       sheet: props.sheet,
-      setCellValues: setCellValues.bind(null, props.dispatch)
+      setCellValues: setCellValues.bind(null, props.dispatch, props.sheet),
+      renderPresenter
     }
   )
 };
@@ -58,8 +60,15 @@ const PresenterContainer = connect(
   })
 )(PresenterContainer_);
 
+function renderPresenter(presenter) {
+  return (
+    <PresenterRouter
+      presenter={new PresenterModel(presenter)} />
+  );
+}
+
 function preserveKeys(map, keySpec) {
-  return map && keySpec && map.filter(k => keySpec.has(k));
+  return map && keySpec && map.filter((_, k) => keySpec.has(k));
 }
 
 function getArrayData(calc, query, formatted, docs) {
@@ -105,6 +114,6 @@ function getMapData(data, query) {
   return data;
 }
 
-function setCellValues(dispatch, valuesByCellRef) {
-  dispatch(dataActions.setCellValues(valuesByCellRef));
+function setCellValues(dispatch, sheet, valuesByCellRef) {
+  dispatch(dataActions.setCellValues(sheet, valuesByCellRef));
 }

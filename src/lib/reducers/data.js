@@ -7,6 +7,7 @@ import {
   SHEET_FAILED,
   SET_CELL_VALUES
 } from '../actions';
+import * as sheetFuncs from '../sheet-funcs';
 
 const initialState = new Record({
   sheet: null,
@@ -25,7 +26,7 @@ export default function data(state = initialState, action) {
       });
     case RECEIVED_SHEET:
       const sheet = new Sheet(action.sheet);
-      const calc = new Calculator(sheet);
+      const calc = new Calculator(sheet, sheetFuncs);
       return state.merge({
         sheet,
         calc,

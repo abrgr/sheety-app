@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { dataActions } from '../action-creators';
 import { connect } from 'react-redux';
-import { Sheet } from '../presenters';
+import { dataActions } from '../action-creators';
+import { PresenterRouter } from '../components';
 
 class Presenter_ extends Component {
   componentDidMount() {
@@ -20,15 +20,10 @@ class Presenter_ extends Component {
       );
     }
 
-    if ( presenter.get('id') === 'table' ) {
-      return (
-        <Sheet
-          arrayDataQuery={presenter.get('arrayDataQuery')} /> 
-      );
-    }
-
-    // TODO
-    return null;
+    return (
+      <PresenterRouter
+        presenter={presenter} />
+    );
   }
 }
 

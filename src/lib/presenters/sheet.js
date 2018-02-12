@@ -14,7 +14,6 @@ class Sheet_ extends Component {
         data={arrayData}
         colHeaders={true}
         rowHeaders={true}
-        stretchH="all"
         afterChange={this.onAfterChange}
         cells={this.getCellConfig} />
     );

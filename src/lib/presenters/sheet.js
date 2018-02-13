@@ -20,17 +20,24 @@ class Sheet_ extends Component {
   }
 
   onAfterChange = (changes, sources) => {
-    const { arrayDataQuery, setCellValues } = this.props;
+    const { arrayDataQuery, setCellValues, sheet } = this.props;
     const rangeRef = CellRefRange.fromA1Ref(arrayDataQuery);
+    const tabId = rangeRef.getIn(['start', 'tabId']);
     setCellValues(
       new Map(
-        new List(changes).map(([rowIdx, colIdx, _, newVal]) => (
-          [new CellRef({
-            tabId: rangeRef.getIn(['start', 'tabId']),
+        new List(changes).map(([rowIdx, colIdx, _, newVal]) => {
+          const cellRef = new CellRef({
+            tabId,
             rowIdx,
             colIdx
-          }), newVal]
-        ))
+          });
+          const cell = sheet.getCell(cellRef);
+          const format = cell && cell.get('format');
+          return [
+            cellRef,
+            format ? format.fromUserEnteredValue(newVal) : newVal
+          ];
+        })
       )
     );
   };

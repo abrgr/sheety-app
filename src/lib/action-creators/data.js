@@ -2,7 +2,8 @@ import {
   REQUESTED_SHEET,
   RECEIVED_SHEET,
   SHEET_FAILED,
-  SET_CELL_VALUES
+  SET_CELL_VALUES,
+  SET_ASYNC_CELL_VALUE
 } from '../actions';
 
 export function load(url) {
@@ -27,4 +28,12 @@ export function setCellValues(sheet, valuesByCellRef) {
     type: SET_CELL_VALUES,
     valuesByCellRef
   };
+}
+
+export function setAsyncCellValue(cellRef, value) {
+  return {
+    type: SET_ASYNC_CELL_VALUE,
+    cellRef,
+    value
+  }
 }

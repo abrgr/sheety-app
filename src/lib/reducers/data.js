@@ -5,9 +5,10 @@ import {
   REQUESTED_SHEET,
   RECEIVED_SHEET,
   SHEET_FAILED,
-  SET_CELL_VALUES
+  SET_CELL_VALUES,
+  SET_ASYNC_CELL_VALUE
 } from '../actions';
-import * as sheetFuncs from '../sheet-funcs';
+import { getters, updaters } from '../sheet-funcs';
 
 const initialState = new Record({
   sheet: null,
@@ -26,7 +27,7 @@ export default function data(state = initialState, action) {
       });
     case RECEIVED_SHEET:
       const sheet = new Sheet(action.sheet);
-      const calc = new Calculator(sheet, sheetFuncs);
+      const calc = new Calculator(sheet, getters, updaters);
       return state.merge({
         sheet,
         calc,
@@ -42,6 +43,10 @@ export default function data(state = initialState, action) {
     case SET_CELL_VALUES:
       return state.merge({
         calculatedValues: state.calc.setValues(action.valuesByCellRef)
+      });
+    case SET_ASYNC_CELL_VALUE:
+      return state.merge({
+        calculatedValues: state.calc.setCachedCellValue(action.cellRef, action.value)
       });
     default:
       return state;

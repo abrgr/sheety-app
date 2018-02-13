@@ -25,25 +25,59 @@ function authenticate(allowAnonymous) {
              .then(creds => creds.user.uid);
 }
 
-export function getUserValue(doc, field) {
-  return authenticate(true).then(uid => {
-    db.collection('user-values')
-      .doc(`${doc}/user-values/${uid}`)
-      .set({
-        [field]: 78.4,
-        'Something else': 'hello world'
-      }, { merge: true }).then(x => {
-        console.log(x);
-      }).catch(e => {
-        console.log(e);
-      });;
+function getFieldValue(collection, pathGenerator, field) {
+  return authenticate(true).then(uid => (
+    db.collection(collection)
+      .doc(pathGenerator(uid))
+      .get()
+      .then(doc => doc.get(field))
+      .catch(err => {
+        console.error('Failed to get field value', err);
+        throw err;
+      })
+  ));
+}
 
-    return db.collection('user-values')
-             .doc(`${doc}/user-values/${uid}`)
-             .get()
-             .then(doc => doc[field])
-             .then(val => {
-               console.log('here', val);
-             }).catch(err => console.error(err));
+function setFieldValue(collection, pathGenerator, field, value) {
+  return authenticate(true).then(uid => (
+    db.collection(collection)
+      .doc(pathGenerator(uid))
+      .set({
+        [field]: value
+      }, { merge: true })
+  )).catch(err => {
+    console.error('Failed to set user value', err);
+    throw err;
   });
 }
+
+export function getUserValue(doc, field) {
+  return getFieldValue('user-values', (uid) => `${doc}/user-values/${uid}`, field);
+}
+
+export function setUserValue(doc, field, value) {
+  return setFieldValue('user-values', (uid) => `${doc}/user-values/${uid}`, field, value);
+}
+
+export function getAggregateValue(doc, field, aggType) {
+  const aggregator = aggregators[aggType];
+  if ( !aggregator ) {
+    console.error('Bad aggregator type', aggType);
+    return Promise.resolve(null);
+  }
+
+  return getFieldValue(
+    'aggregate-values',
+    () => doc,
+    field
+  ).then(aggregator)
+   .catch(err => {
+    console.error('Failed to load aggregate value', err);
+    throw err;
+  });
+}
+
+const aggregators = {
+  'mean': (aggVal) => aggVal ? aggVal.sum / aggVal.count : null,
+  'sum': (aggVal) => aggVal ? aggVal.sum * aggVal.count : null
+};

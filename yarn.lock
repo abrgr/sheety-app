@@ -5992,6 +5992,15 @@ shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
 
+"sheety-calculator@https://github.com/abrgr/sheety-calculator.git#3aebbdb0b444f2d91f91f0a4631a4ac050bb04bd":
+  version "1.0.0"
+  resolved "https://github.com/abrgr/sheety-calculator.git#3aebbdb0b444f2d91f91f0a4631a4ac050bb04bd"
+  dependencies:
+    hot-formula-parser "https://github.com/abrgr/formula-parser.git#68eae50d58306de2c9d92b75533d704b3e23519a"
+    immutable "^3.8.2"
+    sheety-model "https://github.com/abrgr/sheety-model.git#36dac5f56b0c035c49c56558ec096b62d4e0ca5a"
+    toposort "^1.0.6"
+
 "sheety-calculator@https://github.com/abrgr/sheety-calculator.git#664ffcdefcdf6ae9841a8c354a9192e5b55bef62":
   version "1.0.0"
   resolved "https://github.com/abrgr/sheety-calculator.git#664ffcdefcdf6ae9841a8c354a9192e5b55bef62"
@@ -6004,6 +6013,15 @@ shebang-regex@^1.0.0:
 "sheety-model@https://github.com/abrgr/sheety-model.git#058e6f9ddab902b93b28ba835eba55363fd5555f":
   version "1.0.0"
   resolved "https://github.com/abrgr/sheety-model.git#058e6f9ddab902b93b28ba835eba55363fd5555f"
+  dependencies:
+    hot-formula-parser "https://github.com/abrgr/formula-parser.git#68eae50d58306de2c9d92b75533d704b3e23519a"
+    immutable "^3.8.2"
+    moment "^2.20.1"
+    ssf "^0.10.1"
+
+"sheety-model@https://github.com/abrgr/sheety-model.git#36dac5f56b0c035c49c56558ec096b62d4e0ca5a":
+  version "1.0.0"
+  resolved "https://github.com/abrgr/sheety-model.git#36dac5f56b0c035c49c56558ec096b62d4e0ca5a"
   dependencies:
     hot-formula-parser "https://github.com/abrgr/formula-parser.git#68eae50d58306de2c9d92b75533d704b3e23519a"
     immutable "^3.8.2"

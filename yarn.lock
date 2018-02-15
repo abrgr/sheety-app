@@ -3153,6 +3153,13 @@ hosted-git-info@^2.1.4:
     formulajs "github:handsontable/formula.js"
     tiny-emitter "^2.0.1"
 
+"hot-formula-parser@https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e":
+  version "2.3.1"
+  resolved "https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e"
+  dependencies:
+    formulajs "github:handsontable/formula.js"
+    tiny-emitter "^2.0.1"
+
 hpack.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/hpack.js/-/hpack.js-2.1.6.tgz#87774c0949e513f42e84575b3c45681fade2a0b2"
@@ -6001,20 +6008,20 @@ shebang-regex@^1.0.0:
     sheety-model "https://github.com/abrgr/sheety-model.git#36dac5f56b0c035c49c56558ec096b62d4e0ca5a"
     toposort "^1.0.6"
 
-"sheety-calculator@https://github.com/abrgr/sheety-calculator.git#664ffcdefcdf6ae9841a8c354a9192e5b55bef62":
+"sheety-calculator@https://github.com/abrgr/sheety-calculator.git#e0b46083005eb3cd48a132806d4c0b562333b663":
   version "1.0.0"
-  resolved "https://github.com/abrgr/sheety-calculator.git#664ffcdefcdf6ae9841a8c354a9192e5b55bef62"
+  resolved "https://github.com/abrgr/sheety-calculator.git#e0b46083005eb3cd48a132806d4c0b562333b663"
   dependencies:
-    hot-formula-parser "https://github.com/abrgr/formula-parser.git#68eae50d58306de2c9d92b75533d704b3e23519a"
+    hot-formula-parser "https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e"
     immutable "^3.8.2"
-    sheety-model "https://github.com/abrgr/sheety-model.git#058e6f9ddab902b93b28ba835eba55363fd5555f"
+    sheety-model "https://github.com/abrgr/sheety-model.git#0bee405e127ea8325d330818ffb03550cf5b89c5"
     toposort "^1.0.6"
 
-"sheety-model@https://github.com/abrgr/sheety-model.git#058e6f9ddab902b93b28ba835eba55363fd5555f":
+"sheety-model@https://github.com/abrgr/sheety-model.git#0bee405e127ea8325d330818ffb03550cf5b89c5":
   version "1.0.0"
-  resolved "https://github.com/abrgr/sheety-model.git#058e6f9ddab902b93b28ba835eba55363fd5555f"
+  resolved "https://github.com/abrgr/sheety-model.git#0bee405e127ea8325d330818ffb03550cf5b89c5"
   dependencies:
-    hot-formula-parser "https://github.com/abrgr/formula-parser.git#68eae50d58306de2c9d92b75533d704b3e23519a"
+    hot-formula-parser "https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e"
     immutable "^3.8.2"
     moment "^2.20.1"
     ssf "^0.10.1"

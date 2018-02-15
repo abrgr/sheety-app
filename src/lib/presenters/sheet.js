@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import HotTable from 'react-handsontable';
+import Handsontable from 'handsontable';
 import { Map, List } from 'immutable';
 import { CellRef, CellRefRange } from 'sheety-model';
 import presenter from '../presenter';
 
 class Sheet_ extends Component {
   render() {
-    const { arrayData } = this.props;
+    const { arrayData, config } = this.props;
     return (
       <HotTable
         root="hot"
         readOnly={true}
         data={arrayData}
-        colHeaders={true}
-        rowHeaders={true}
+        colHeaders={config.get('showColumnHeaders')}
+        rowHeaders={config.get('showRowHeaders')}
+        autoRowSize={true}
+        stretchH="all"
+        preventOverflow="horizontal"
+        mergeCells={this.mergeCells()}
         afterChange={this.onAfterChange}
         cells={this.getCellConfig} />
     );
@@ -42,19 +47,67 @@ class Sheet_ extends Component {
     );
   };
 
+  mergeCells = () => {
+    const { config } = this.props;
+    const merges = config && config.get('merges');
+    return (merges || new List()).map(a1 => {
+       const range = CellRefRange.fromA1Ref(a1);
+       const startRow = range.getIn(['start', 'rowIdx']);
+       const startCol = range.getIn(['start', 'colIdx']);
+       const endRow = range.getIn(['end', 'rowIdx']);
+       const endCol = range.getIn(['end', 'colIdx']);
+       return {
+         row: startRow,
+         col: startCol,
+         rowspan: endRow - startRow + 1,
+         colspan: endCol - startCol + 1
+       };
+     }).toJS();
+  };
+
   getCellConfig = (row, col) => {
     const { arrayCells } = this.props;
     const cell = arrayCells[row][col];
 
     return {
-      readOnly: cell && cell.get('isUserEditable') ? false : true
+      readOnly: cell && cell.get('isUserEditable') ? false : true,
+      renderer: this.renderer
     };
   };
+
+  renderer = (instance, td, row, col, prop, value, cellProperties) => {
+    Handsontable.renderers.TextRenderer.call(instance, instance, td, row, col, prop, value, cellProperties);
+
+    const { config } = this.props;
+    const formatting = config && config.get('formatting');
+    const format = formatting && formatting.find((format, a1Range) => (
+      rangeContains(CellRefRange.fromA1Ref(a1Range), row, col)
+    ));
+
+    if ( format ) {
+      format.forEach((value, key) => {
+        td.style[key] = value;
+      });
+    }
+  }
+}
+
+function rangeContains(range, row, col) {
+  return range.getIn(['start', 'rowIdx']) <= row
+      && range.getIn(['end', 'rowIdx']) >= row
+      && range.getIn(['start', 'colIdx']) <= col
+      && range.getIn(['end', 'colIdx']) >= col;
 }
 
 const Sheet = presenter({
   formatted: true,
-  arrayDataDocs: 'An A1 reference to the data to show'
+  arrayDataDocs: 'An A1 reference to the data to show',
+  configKeyDocs: new Map({
+    'formatting': 'Map from A1 range references to a map from css property name to value.',
+    'merges': 'List of A1 ranges where the cells in each range will be merged.',
+    'showColumnHeaders': 'Boolean indicating whether to show column headers.',
+    'showRowHeaders': 'Boolean indicating whether to show row headers.'
+  })
 })(Sheet_);
 
 export default Sheet;

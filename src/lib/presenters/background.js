@@ -23,6 +23,7 @@ export default presenter({
     maxWidth: 'Maximum width of the cell',
     minHeight: 'Minimum height of the cell',
     maxHeight: 'Maximum height of the cell',
+    textAlign: 'Text alignment of the cell',
     presenter: 'Inner presenter definition'
   })
 })(BackgroundPresenter);

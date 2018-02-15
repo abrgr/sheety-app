@@ -8,34 +8,107 @@
       "rows": [
         [
           {
-            "width": 3
+            "width": 2
           },
           {
-            "width": 6,
+            "width": 8,
+            "presenter": {
+              "id": "table",
+              "arrayDataQuery": "'Valuator - Top-Down'!A15:D18",
+              "config": {
+                "showColumnHeaders": false,
+                "showRowHeaders": false,
+                "formatting": {
+                  "A1:D1": {
+                    "backgroundColor": "grey"
+                  },
+                  "B3:B4": {
+                    "backgroundColor": "blue"
+                  },
+                  "C3:C4": {
+                    "backgroundColor": "red"
+                  },
+                  "D3:D4": {
+                    "backgroundColor": "purple"
+                  }
+                },
+                "merges": [
+                  "A1:D1"
+                ]
+              }
+            }
+          },
+          {
+            "width": 2
+          }
+        ],
+        [
+          {
+            "width": 3,
             "presenter": {
               "id": "background",
               "config": {
-                "backgroundColor": "red",
-                "borderRadius": 15,
+                "backgroundColor": "blue",
+                "borderRadius": 10,
+                "textAlign": "center",
                 "presenter": {
                   "id": "text",
                   "config": {
-                    "text": "Hello world!!!  This is so cool.  I am a great text presenter!  Woohoo"
+                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
                   }
                 }
               }
             }
           },
           {
-            "width": 3
-          }
-        ],
-        [
-          {
-            "width": 5,
+            "width": 3,
             "presenter": {
-              "id": "table",
-              "arrayDataQuery": "'Valuator - Bottom-up'!A1:H79"
+              "id": "background",
+              "config": {
+                "backgroundColor": "blue",
+                "borderRadius": 10,
+                "textAlign": "center",
+                "presenter": {
+                  "id": "text",
+                  "config": {
+                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "width": 3,
+            "presenter": {
+              "id": "background",
+              "config": {
+                "backgroundColor": "blue",
+                "borderRadius": 10,
+                "textAlign": "center",
+                "presenter": {
+                  "id": "text",
+                  "config": {
+                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "width": 3,
+            "presenter": {
+              "id": "background",
+              "config": {
+                "backgroundColor": "blue",
+                "borderRadius": 10,
+                "textAlign": "center",
+                "presenter": {
+                  "id": "text",
+                  "config": {
+                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  }
+                }
+              }
             }
           }
         ]

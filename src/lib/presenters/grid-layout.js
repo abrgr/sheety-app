@@ -15,8 +15,8 @@ const GridPresenter = ({ config, renderPresenter }) => {
           {row.map((cell, cellIdx) => (
             <div
               key={`cell-${cellIdx}`}
-              className={`col-${cell.width}`}>
-              {cell.presenter ? renderPresenter(cell.presenter) : null}
+              className={`col-${cell.get('width')}`}>
+              {cell.has('presenter') ? renderPresenter(cell.get('presenter')) : null}
             </div>
           ))}
         </div>

@@ -71,11 +71,11 @@ class Sheet_ extends Component {
 
     return {
       readOnly: cell && cell.get('isUserEditable') ? false : true,
-      renderer: this.renderer
+      renderer: this.cellRenderer
     };
   };
 
-  renderer = (instance, td, row, col, prop, value, cellProperties) => {
+  cellRenderer = (instance, td, row, col, prop, value, cellProperties) => {
     Handsontable.renderers.TextRenderer.call(instance, instance, td, row, col, prop, value, cellProperties);
 
     const { config } = this.props;

@@ -2,8 +2,8 @@ import React from 'react';
 import { Map } from 'immutable';
 import presenter from '../presenter';
 
-const TextPresenter = ({ config }) => {
-  const text = config.get('text');
+const TextPresenter = ({ mapData }) => {
+  const text = mapData.get('text');
 
   return (
     <p>
@@ -14,6 +14,8 @@ const TextPresenter = ({ config }) => {
 
 export default presenter({
   configKeyDocs: new Map({
+  }),
+  mapDataDocs: new Map({
     text: 'Text to render'
   })
 })(TextPresenter);

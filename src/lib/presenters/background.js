@@ -16,6 +16,7 @@ const BackgroundPresenter = ({ config, renderPresenter }) => {
 export default presenter({
   configKeyDocs: new Map({
     backgroundColor: 'String background color suitable for css backgroundColor property',
+    color: 'String color suitable for css color property',
     borderRadius: 'Border radius suitable for css border radius',
     width: 'Width of the cell',
     height: 'Height of the cell',

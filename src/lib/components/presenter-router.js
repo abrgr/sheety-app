@@ -3,14 +3,16 @@ import {
   Sheet,
   GridLayout,
   Background,
-  Text
+  Text,
+  Link
 } from '../presenters';
 
 const presenterComponents = {
   table: Sheet,
   grid: GridLayout,
   background: Background,
-  text: Text
+  text: Text,
+  link: Link
 };
 
 export default ({ presenter }) => {

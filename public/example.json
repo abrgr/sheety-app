@@ -8,6 +8,31 @@
       "rows": [
         [
           {
+            "width": 1,
+            "presenter": {
+              "id": "link",
+              "mapDataQuery": {
+                "url": "'http://google.com'"
+              },
+              "config": {
+                "presenter": {
+                  "id": "background",
+                  "config": {
+                    "backgroundColor": "yellow",
+                    "presenter": {
+                      "id": "text",
+                      "mapDataQuery": {
+                        "text": "'Go Back'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        [
+          {
             "width": 2
           },
           {
@@ -53,8 +78,8 @@
                 "textAlign": "center",
                 "presenter": {
                   "id": "text",
-                  "config": {
-                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  "mapDataQuery": {
+                    "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
                   }
                 }
               }
@@ -70,8 +95,8 @@
                 "textAlign": "center",
                 "presenter": {
                   "id": "text",
-                  "config": {
-                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  "mapDataQuery": {
+                    "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
                   }
                 }
               }
@@ -87,8 +112,8 @@
                 "textAlign": "center",
                 "presenter": {
                   "id": "text",
-                  "config": {
-                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  "mapDataQuery": {
+                    "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
                   }
                 }
               }
@@ -104,8 +129,8 @@
                 "textAlign": "center",
                 "presenter": {
                   "id": "text",
-                  "config": {
-                    "text": "Review how the company breaks down its business into Segments including Sales Growth and Profitability"
+                  "mapDataQuery": {
+                    "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
                   }
                 }
               }

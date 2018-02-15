@@ -1,4 +1,5 @@
 import React, { cloneElement, Children } from 'react';
+import { Map, List } from 'immutable';
 import { connect } from 'react-redux';
 import { CellRefRange, Presenter as PresenterModel } from 'sheety-model';
 import { dataActions } from './action-creators';
@@ -32,7 +33,7 @@ export default function presenter({ formatted, configKeyDocs, mapDataDocs, array
 }
 
 const PresenterContainer_ = (props) => {
-  const mapData = getMapData(props.data, props.mapDataQuery);
+  const mapData = getMapData(props.calc, props.data, props.mapDataQuery);
   const arrayData = getArrayData(props.calc, props.arrayDataQuery, props.formatted, props.arrayDataDocs);
   const arrayCells = getArrayCells(props.calc, props.arrayDataQuery, props.arrayDataDocs);
 
@@ -72,8 +73,8 @@ function preserveKeys(map, keySpec) {
 }
 
 function getArrayData(calc, query, formatted, docs) {
-  if ( !docs ) {
-    return null; // TODO: logging?
+  if ( !docs || !query ) {
+    return new List(); // TODO: logging?
   }
 
   const a1Range = CellRefRange.fromA1Ref(query);
@@ -110,8 +111,12 @@ function getSpacer(len) {
   return spacer;
 }
 
-function getMapData(data, query) {
-  return data;
+function getMapData(calc, data, query) {
+  if ( !query ) {
+    return new Map();
+  }
+
+  return query.map(value => calc.evaluateFormula(value));
 }
 
 function setCellValues(dispatch, sheet, valuesByCellRef) {

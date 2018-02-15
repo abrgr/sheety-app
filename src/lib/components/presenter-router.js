@@ -4,7 +4,8 @@ import {
   GridLayout,
   Background,
   Text,
-  Link
+  Link,
+  Router
 } from '../presenters';
 
 const presenterComponents = {
@@ -12,7 +13,8 @@ const presenterComponents = {
   grid: GridLayout,
   background: Background,
   text: Text,
-  link: Link
+  link: Link,
+  router: Router
 };
 
 export default ({ presenter }) => {

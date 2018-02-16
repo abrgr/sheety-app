@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import HotTable from 'react-handsontable';
 import Handsontable from 'handsontable';
 import { Map, List } from 'immutable';
+import uuid from 'uuid';
 import { CellRef, CellRefRange } from 'sheety-model';
 import presenter from '../presenter';
 
 class Sheet_ extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: `sheet-${uuid.v4()}`
+    };
+  }
+
   render() {
     const { arrayData, config } = this.props;
     return (
       <HotTable
-        root="hot"
+        root={this.state.id}
         readOnly={true}
         data={arrayData}
         colHeaders={config.get('showColumnHeaders')}
@@ -27,14 +35,17 @@ class Sheet_ extends Component {
   onAfterChange = (changes, sources) => {
     const { arrayDataQuery, setCellValues, sheet } = this.props;
     const rangeRef = CellRefRange.fromA1Ref(arrayDataQuery);
-    const tabId = rangeRef.getIn(['start', 'tabId']);
+    const upperLeft = rangeRef.get('start');
+    const tabId = upperLeft.get('tabId');
+    const upperLeftRow = upperLeft.get('rowIdx');
+    const upperLeftCol = upperLeft.get('colIdx');
     setCellValues(
       new Map(
         new List(changes).map(([rowIdx, colIdx, _, newVal]) => {
           const cellRef = new CellRef({
             tabId,
-            rowIdx,
-            colIdx
+            rowIdx: upperLeftRow + rowIdx,
+            colIdx: upperLeftCol + colIdx
           });
           const cell = sheet.getCell(cellRef);
           const format = cell && cell.get('format');

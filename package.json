@@ -9,6 +9,7 @@
     "bootstrap": "^4.0.0",
     "create-react-class": "^15.6.2",
     "firebase": "^4.9.1",
+    "firebaseui": "^2.6.0",
     "hot-formula-parser": "https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e",
     "react": "^16.2.0",
     "react-data-grid": "^3.0.6",

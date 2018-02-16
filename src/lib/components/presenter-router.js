@@ -5,7 +5,8 @@ import {
   Background,
   Text,
   Link,
-  Router
+  Router,
+  RequireAuth
 } from '../presenters';
 
 const presenterComponents = {
@@ -14,7 +15,8 @@ const presenterComponents = {
   background: Background,
   text: Text,
   link: Link,
-  router: Router
+  router: Router,
+  "require-auth": RequireAuth
 };
 
 export default ({ presenter }) => {

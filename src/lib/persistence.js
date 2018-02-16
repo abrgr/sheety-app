@@ -1,32 +1,10 @@
-import firebase from "firebase/app";
-import 'firebase/auth';
-import 'firebase/firestore';
-
-const config = {
-  apiKey: "AIzaSyDlMWJ88fbnULtnGhPDtw4ajqdcT8YSwvo",
-  authDomain: "green-chi-194817.firebaseapp.com",
-  databaseURL: "https://green-chi-194817.firebaseio.com",
-  projectId: "green-chi-194817",
-  storageBucket: "green-chi-194817.appspot.com",
-  messagingSenderId: "669147253643"
-};
-
-firebase.initializeApp(config);
+import firebase from './firebase';
+import ensureAuthenticated from './ensure-authenticated';
 
 const db = firebase.firestore();
-const auth = firebase.auth();
-
-function authenticate(allowAnonymous) {
-  if ( auth.currentUser ) {
-    return Promise.resolve(auth.currentUser.uid);
-  }
-
-  return auth.signInAnonymouslyAndRetrieveData()
-             .then(creds => creds.user.uid);
-}
 
 function getFieldValue(collection, pathGenerator, field) {
-  return authenticate(true).then(uid => (
+  return ensureAuthenticated(true).then(uid => (
     db.collection(collection)
       .doc(pathGenerator(uid))
       .get()
@@ -39,7 +17,7 @@ function getFieldValue(collection, pathGenerator, field) {
 }
 
 function setFieldValue(collection, pathGenerator, field, value) {
-  return authenticate(true).then(uid => (
+  return ensureAuthenticated(true).then(uid => (
     db.collection(collection)
       .doc(pathGenerator(uid))
       .set({

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 //
 // FROM: https://raw.githubusercontent.com/google/caja/1056be89dad487f9178d89f462fe5cb207c7e604/src/com/google/caja/plugin/cssparser.js
 //
@@ -25,6 +27,8 @@
  * \@overrides window
  * \@provides parseCssStylesheet, parseCssDeclarations
  */
+
+import { lexCss } from './csslexer';
 
 // The Turkish i seems to be a non-issue, but abort in case it is.
 if ('I'.toLowerCase() !== 'i') { throw 'I/i problem'; }
@@ -85,8 +89,6 @@ var parseCssStylesheet;
 var parseCssDeclarations;
 
 (function () {
-  var lexCss = window['lexCss'];
-
   // stylesheet  : [ CDO | CDC | S | statement ]*;
   parseCssStylesheet = function(cssText, handler) {
     var toks = lexCss(cssText);
@@ -320,8 +322,7 @@ var parseCssDeclarations;
   };
 })();
 
-// Exports for closure compiler.
-if (typeof window !== 'undefined') {
-  window['parseCssStylesheet'] = parseCssStylesheet;
-  window['parseCssDeclarations'] = parseCssDeclarations;
-}
+export {
+  parseCssStylesheet,
+  parseCssDeclarations
+};

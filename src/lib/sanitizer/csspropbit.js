@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 //
 // Translated from: https://raw.githubusercontent.com/google/caja/master/src/com/google/caja/lang/css/CssPropBit.java
 // and https://caja.appspot.com/v6012-es53-2-ge0690ee2/ses-single-frame.js?debug=1
@@ -761,6 +763,5 @@ var cssSchema = (function () {
     }
     return schema;
   })();
-if (typeof window !== 'undefined') {
-  window['cssSchema'] = cssSchema;
-}
+
+export default cssSchema;

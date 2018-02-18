@@ -34,7 +34,7 @@
                   "presenter": {
                     "id": "content",
                     "config": {
-                      "content": "<h1>Hello world!!!!</h1><p style=\"color: green\">green?</p>"
+                      "content": "<h1>Hello world!!!!</h1><p style=\"color: green; background-image: url('abc.jpg');\">green?</p>"
                     }
                   }
                 }

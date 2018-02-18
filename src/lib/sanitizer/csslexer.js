@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 //
 // https://raw.githubusercontent.com/google/caja/1056be89dad487f9178d89f462fe5cb207c7e604/src/com/google/caja/plugin/csslexer.js
 //
@@ -282,8 +284,7 @@ var decodeCss;
   };
 })();
 
-// Exports for closure compiler.
-if (typeof window !== 'undefined') {
-  window['lexCss'] = lexCss;
-  window['decodeCss'] = decodeCss;
-}
+export {
+  lexCss,
+  decodeCss
+};

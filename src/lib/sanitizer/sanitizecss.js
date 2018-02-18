@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 //
 // Translated From: https://raw.githubusercontent.com/google/caja/19e4f88478a5084f37c04e495739d2045492d9bb/src/com/google/caja/plugin/sanitizecss.js
 //
@@ -15,8 +17,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-import * as cssPropBits from './csspropbit';
 
 /**
  * @fileoverview
@@ -46,6 +46,12 @@ import * as cssPropBits from './csspropbit';
  * \@provides sanitizeMediaQuery
  */
 
+import cssSchema, * as cssPropBits from './csspropbit';
+import { decodeCss } from './csslexer';
+import html4 from './html4';
+import URI from './uri';
+import { parseCssStylesheet } from './cssparser';
+
 var sanitizeCssProperty = undefined;
 var sanitizeCssSelectorList = undefined;
 var sanitizeStylesheet = undefined;
@@ -53,12 +59,6 @@ var sanitizeStylesheetWithExternals = undefined;
 var sanitizeMediaQuery = undefined;
 
 (function () {
-  var decodeCss = window['decodeCss'];
-  var URI = window['URI'];
-  var html4 = window['html4'];
-  var parseCssStylesheet = window['parseCssStylesheet'];
-  var cssSchema = window['cssSchema'];
-
   var NOEFFECT_URL = 'url("about:blank")';
   /**
    * The set of characters that need to be normalized inside url("...").
@@ -1019,10 +1019,9 @@ var sanitizeMediaQuery = undefined;
   })();
 })();
 
-// Exports for closure compiler.
-if (typeof window !== 'undefined') {
-  window['sanitizeCssProperty'] = sanitizeCssProperty;
-  window['sanitizeCssSelectorList'] = sanitizeCssSelectorList;
-  window['sanitizeStylesheet'] = sanitizeStylesheet;
-  window['sanitizeMediaQuery'] = sanitizeMediaQuery;
-}
+export {
+  sanitizeCssProperty,
+  sanitizeCssSelectorList,
+  sanitizeStylesheet,
+  sanitizeMediaQuery
+};

@@ -5,6 +5,7 @@ import Text from './text';
 import Link from './link';
 import Router from './router';
 import RequireAuth from './require-auth'
+import Content from './content';
 
 export { 
   Sheet,
@@ -13,5 +14,6 @@ export {
   Text,
   Link,
   Router,
-  RequireAuth
+  RequireAuth,
+  Content
 };

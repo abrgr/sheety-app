@@ -7,17 +7,39 @@
     "config": {
       "routes": {
         "/": {
-          "id": "link",
-          "mapDataQuery": {
-            "url": "'/bottom-up'"
-          },
+          "id": "grid",
           "config": {
-            "presenter": {
-              "id": "text",
-              "mapDataQuery": {
-                "text": "'Go!'"
-              }
-            }
+            "rows": [
+              [
+                {
+                  "width": 12,
+                  "presenter": {
+                    "id": "link",
+                    "mapDataQuery": {
+                      "url": "'/bottom-up'"
+                    },
+                    "config": {
+                      "presenter": {
+                        "id": "text",
+                        "mapDataQuery": {
+                          "text": "'Go!'"
+                        }
+                      }
+                    }
+                  }
+                }
+              ], [
+                {
+                  "width": 12,
+                  "presenter": {
+                    "id": "content",
+                    "config": {
+                      "content": "<h1>Hello world!!!!</h1><p style=\"color: green\">green?</p>"
+                    }
+                  }
+                }
+              ]
+            ]
           }
         },
         "/bottom-up": {

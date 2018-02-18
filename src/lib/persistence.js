@@ -1,11 +1,13 @@
-import firebase from './firebase';
+import firebasePromise from './firebase';
 import ensureAuthenticated from './ensure-authenticated';
 
-const db = firebase.firestore();
-
 function getFieldValue(collection, pathGenerator, field) {
-  return ensureAuthenticated(true).then(uid => (
-    db.collection(collection)
+  return Promise.all([
+    ensureAuthenticated(true),
+    firebasePromise
+  ]).then(([uid, firebase]) => (
+    firebase.firestore()
+      .collection(collection)
       .doc(pathGenerator(uid))
       .get()
       .then(doc => doc.get(field))
@@ -17,8 +19,12 @@ function getFieldValue(collection, pathGenerator, field) {
 }
 
 function setFieldValue(collection, pathGenerator, field, value) {
-  return ensureAuthenticated(true).then(uid => (
-    db.collection(collection)
+  return Promise.all([
+    ensureAuthenticated(true),
+    firebasePromise
+  ]).then(([uid, firebase]) => (
+    firebase.firestore()
+      .collection(collection)
       .doc(pathGenerator(uid))
       .set({
         [field]: value

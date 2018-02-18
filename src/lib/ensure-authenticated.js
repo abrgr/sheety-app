@@ -1,11 +1,12 @@
-import firebase from './firebase';
+import firebasePromise from './firebase';
 
-const auth = firebase.auth();
-
-export const ensureHaveAuthState = new Promise((resolve, reject) => {
-  const unsubscribe = auth.onAuthStateChanged((user) => {
-    unsubscribe();
-    resolve(user);
+export const ensureHaveAuthState = firebasePromise.then(firebase => {
+  const auth = firebase.auth();
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      unsubscribe();
+      resolve(auth);
+    });
   });
 });
 
@@ -18,7 +19,7 @@ export default function ensureAuthenticated(allowAnonymous, signIn) {
     return authenticationPromise;
   }
 
-  authenticationPromise = ensureHaveAuthState.then(() => {
+  authenticationPromise = ensureHaveAuthState.then((auth) => {
     authenticationPromise = null;
     if ( auth.currentUser
         && (allowAnonymous || !auth.currentUser.isAnonymous) ) {
@@ -46,4 +47,6 @@ export default function ensureAuthenticated(allowAnonymous, signIn) {
       });
     });
   });
+
+  return authenticationPromise;
 }

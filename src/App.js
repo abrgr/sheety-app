@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import Router from './lib/router';
 import store from './lib/store';
 import './App.css';
+import 'whatwg-fetch';
 
 class App extends Component {
   render() {

@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { Map } from 'immutable';
 import firebaseui from 'firebaseui';
 import uuid from 'uuid';
+import firebasePromise from '../firebase';
 import { ensureHaveAuthState } from '../ensure-authenticated';
-import firebase from '../firebase';
 import presenter from '../presenter';
 
 import 'firebaseui/dist/firebaseui.css';
-
-const auth = firebase.auth();
 
 class RequireAuthPresenter extends Component {
   constructor(props) {
@@ -26,14 +24,17 @@ class RequireAuthPresenter extends Component {
     });
   };
 
-  isAuthenticated = () => (
+  isAuthenticated = (auth) => (
     // TODO: check roles, etc.
     auth.currentUser && !auth.currentUser.isAnonymous
   );
 
   componentDidMount() {
-    ensureHaveAuthState.then(() => {
-      if ( this.isAuthenticated() ) {
+    Promise.all([
+      ensureHaveAuthState,
+      firebasePromise
+    ]).then(([auth, firebase]) => {
+      if ( this.isAuthenticated(auth) ) {
         return this.authenticated();
       }
 
@@ -45,13 +46,10 @@ class RequireAuthPresenter extends Component {
           autoUpgradeAnonymousUsers: true,
           signInSuccessUrl: window.location.href,
           tosUrl: 'https://ezbds.com',
-          credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
           signInOptions: [
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
             {
-              provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              authMethod: 'https://accounts.google.com',
-              clientId: '669147253643-fdslrbc9suglja8j6gfh3o243u9ni7r2.apps.googleusercontent.com'
+              provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
             }
           ],
           callbacks: {

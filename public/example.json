@@ -48,7 +48,7 @@
             "rows": [
               [
                 {
-                  "width": 1,
+                  "width": 2,
                   "presenter": {
                     "type": "link",
                     "mapDataQuery": {
@@ -58,7 +58,10 @@
                       "presenter": {
                         "type": "background",
                         "config": {
-                          "backgroundColor": "yellow",
+                          "backgroundColor": "#fbca71",
+                          "borderRadius": 10,
+                          "textAlign": "center",
+                          "color": "#4e4e4e",
                           "presenter": {
                             "type": "text",
                             "mapDataQuery": {
@@ -85,16 +88,16 @@
                       "showRowHeaders": false,
                       "formatting": {
                         "A1:D1": {
-                          "backgroundColor": "grey"
+                          "backgroundColor": "#dadada"
                         },
                         "B3:B4": {
-                          "backgroundColor": "blue"
+                          "backgroundColor": "#d7e2f6"
                         },
                         "C3:C4": {
-                          "backgroundColor": "red"
+                          "backgroundColor": "#fbca71"
                         },
                         "D3:D4": {
-                          "backgroundColor": "purple"
+                          "backgroundColor": "#bfc0ea"
                         }
                       },
                       "merges": [
@@ -113,13 +116,14 @@
                   "presenter": {
                     "type": "background",
                     "config": {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#94c0e9",
                       "borderRadius": 10,
                       "textAlign": "center",
+                      "height": "100%",
                       "presenter": {
-                        "type": "text",
-                        "mapDataQuery": {
-                          "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
+                        "type": "content",
+                        "config": {
+                          "content": "Review how the company breaks down its business into <strong>Segments</strong> including <strong>Sales Growth</strong> and <strong>Profitability</strong>"
                         }
                       }
                     }
@@ -130,13 +134,14 @@
                   "presenter": {
                     "type": "background",
                     "config": {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#bfc0ea",
                       "borderRadius": 10,
                       "textAlign": "center",
+                      "height": "100%",
                       "presenter": {
-                        "type": "text",
-                        "mapDataQuery": {
-                          "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
+                        "type": "content",
+                        "config": {
+                          "content": "See what the <strong>Community</strong> expects and join the <strong>Community Forum</strong> to share views and insights"
                         }
                       }
                     }
@@ -147,13 +152,14 @@
                   "presenter": {
                     "type": "background",
                     "config": {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#eeed6f",
                       "borderRadius": 10,
                       "textAlign": "center",
+                      "height": "100%",
                       "presenter": {
-                        "type": "text",
-                        "mapDataQuery": {
-                          "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
+                        "type": "content",
+                        "config": {
+                          "content": "Make your <strong>Sales Growth</strong> and <strong>Profitability</strong> estimates for each segment (yellow boxes) and observe how changes impact your <strong>Segment</strong> and overall <strong>Value</strong>"
                         }
                       }
                     }
@@ -164,13 +170,14 @@
                   "presenter": {
                     "type": "background",
                     "config": {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#94c0e9",
                       "borderRadius": 10,
                       "textAlign": "center",
+                      "height": "100%",
                       "presenter": {
-                        "type": "text",
-                        "mapDataQuery": {
-                          "text": "'Review how the company breaks down its business into Segments including Sales Growth and Profitability'"
+                        "type": "content",
+                        "config": {
+                          "content": "Store your view and make your <strong>Green Chi Portfolio</strong>"
                         }
                       }
                     }
@@ -191,13 +198,13 @@
                       "showRowHeaders": false,
                       "formatting": {
                         "A1:H1": {
-                          "backgroundColor": "grey"
+                          "backgroundColor": "#dadada"
                         },
                         "G5:G6": {
-                          "backgroundColor": "orange"
+                          "backgroundColor": "#eeed6f"
                         },
                         "G7:G8": {
-                          "backgroundColor": "yellow"
+                          "backgroundColor": "#fbca71"
                         }
                       },
                       "merges": [

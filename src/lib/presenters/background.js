@@ -4,10 +4,10 @@ import presenter from '../presenter';
 
 const BackgroundPresenter = ({ config, renderPresenter }) => {
   const presenter = config.get('presenter');
-  const style = config.remove('presenter').toJS();
+  const style = config.remove('presenter');
 
   return (
-    <div style={style}>
+    <div style={style.toJS()}>
       {presenter ? renderPresenter(presenter) : null}
     </div>
   );
@@ -25,6 +25,10 @@ export default presenter({
     minHeight: 'Minimum height of the cell',
     maxHeight: 'Maximum height of the cell',
     textAlign: 'Text alignment of the cell',
+    marginTop: 'Top margin',
+    marginBottom: 'Bottom margin',
+    marginLeft: 'Left margin',
+    marginRight: 'Right margin',
     presenter: 'Inner presenter definition'
   })
 })(BackgroundPresenter);

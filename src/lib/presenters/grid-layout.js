@@ -11,6 +11,7 @@ const GridPresenter = ({ config, renderPresenter }) => {
       {rows.map((row, rowIdx) => (
         <div
           key={`row-${rowIdx}`}
+          style={{marginTop: 20, marginBottom: 20}}
           className="row">
           {row.map((cell, cellIdx) => (
             <div

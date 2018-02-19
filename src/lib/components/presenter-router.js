@@ -22,7 +22,7 @@ const presenterComponents = {
 };
 
 export default ({ presenter }) => {
-  const presenterId = presenter.get('id');
+  const presenterId = presenter.get('type');
   const PresenterComponent = presenterComponents[presenterId];
 
   if ( PresenterComponent ) {

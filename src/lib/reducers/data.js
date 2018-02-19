@@ -2,9 +2,9 @@ import { Record } from 'immutable';
 import { Sheet, Presenter } from 'sheety-model';
 import Calculator from 'sheety-calculator';
 import {
-  REQUESTED_SHEET,
-  RECEIVED_SHEET,
-  SHEET_FAILED,
+  REQUESTED_APP_MODEL,
+  RECEIVED_APP_MODEL,
+  APP_MODEL_FAILED,
   SET_CELL_VALUES,
   SET_ASYNC_CELL_VALUE
 } from '../actions';
@@ -21,11 +21,11 @@ const initialState = new Record({
 
 export default function data(state = initialState, action) {
   switch ( action.type ) {
-    case REQUESTED_SHEET:
+    case REQUESTED_APP_MODEL:
       return state.merge(initialState).merge({
         isLoading: true
       });
-    case RECEIVED_SHEET:
+    case RECEIVED_APP_MODEL:
       const sheet = new Sheet(action.sheet);
       const calc = new Calculator(sheet, getters, updaters);
       return state.merge({
@@ -36,7 +36,7 @@ export default function data(state = initialState, action) {
         calculatedValues: calc.vals,
         err: null
       });
-    case SHEET_FAILED:
+    case APP_MODEL_FAILED:
       return state.merge(initialState).merge({
         err: action.err
       });

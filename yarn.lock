@@ -5400,16 +5400,6 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-data-grid-addons@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/react-data-grid-addons/-/react-data-grid-addons-3.0.6.tgz#ce9016e43fe4f85c8a1cf39a2dc6df33479d1f9c"
-  dependencies:
-    react-data-grid "^3.0.6"
-
-react-data-grid@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/react-data-grid/-/react-data-grid-3.0.6.tgz#3e0819696c265ed9fd380582d8c5ca5632ccf8ba"
-
 react-dev-utils@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-5.0.0.tgz#425ac7c9c40c2603bc4f7ab8836c1406e96bb473"
@@ -6029,18 +6019,18 @@ shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
 
-"sheety-calculator@https://github.com/abrgr/sheety-calculator.git#e0b46083005eb3cd48a132806d4c0b562333b663":
+"sheety-calculator@https://github.com/abrgr/sheety-calculator.git#962beb563cd9ce42e20ef0078e8f93146eecf235":
   version "1.0.0"
-  resolved "https://github.com/abrgr/sheety-calculator.git#e0b46083005eb3cd48a132806d4c0b562333b663"
+  resolved "https://github.com/abrgr/sheety-calculator.git#962beb563cd9ce42e20ef0078e8f93146eecf235"
   dependencies:
     hot-formula-parser "https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e"
     immutable "^3.8.2"
-    sheety-model "https://github.com/abrgr/sheety-model.git#0bee405e127ea8325d330818ffb03550cf5b89c5"
+    sheety-model "https://github.com/abrgr/sheety-model.git#9e39d24179704040476f05c8438d5ade50679aca"
     toposort "^1.0.6"
 
-"sheety-model@https://github.com/abrgr/sheety-model.git#0bee405e127ea8325d330818ffb03550cf5b89c5":
+"sheety-model@https://github.com/abrgr/sheety-model.git#9e39d24179704040476f05c8438d5ade50679aca":
   version "1.0.0"
-  resolved "https://github.com/abrgr/sheety-model.git#0bee405e127ea8325d330818ffb03550cf5b89c5"
+  resolved "https://github.com/abrgr/sheety-model.git#9e39d24179704040476f05c8438d5ade50679aca"
   dependencies:
     hot-formula-parser "https://github.com/abrgr/formula-parser.git#f937f3bb0ba510b6ff2cf2f73346f61fdc97df6e"
     immutable "^3.8.2"

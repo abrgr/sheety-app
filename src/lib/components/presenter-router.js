@@ -1,25 +1,22 @@
 import React from 'react';
-import {
-  Sheet,
-  GridLayout,
-  Background,
-  Text,
-  Link,
-  Router,
-  RequireAuth,
-  Content
-} from '../presenters';
+import makeCorePresenters from 'sheety-core-presenters/dist/app';
+import firebasePromise from '../firebase';
+import { ensureHaveAuthState } from '../ensure-authenticated';
+import presenter from '../presenter';
 
-const presenterComponents = {
-  table: Sheet,
-  grid: GridLayout,
-  background: Background,
-  text: Text,
-  link: Link,
-  router: Router,
-  "require-auth": RequireAuth,
-  content: Content
-};
+const presenterComponents = {};
+makeCorePresenters(
+  presenter,
+  {
+    presenterRegistry: (type, component) => {
+      presenterComponents[type] = component;
+    },
+    firebasePromise: Promise.all([
+      ensureHaveAuthState,
+      firebasePromise
+    ]).then(([_, firebase]) => firebase)
+  }
+);
 
 export default ({ presenter }) => {
   const presenterId = presenter.get('type');

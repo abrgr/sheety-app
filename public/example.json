@@ -7,7 +7,7 @@
     "config": {
       "routes": {
         "/": {
-          "type": "grid",
+          "type": "grid-layout",
           "config": {
             "rows": [
               [
@@ -43,7 +43,7 @@
           }
         },
         "/bottom-up": {
-          "type": "grid",
+          "type": "grid-layout",
           "config": {
             "rows": [
               [
@@ -56,7 +56,7 @@
                     },
                     "config": {
                       "presenter": {
-                        "type": "background",
+                        "type": "view",
                         "config": {
                           "backgroundColor": "#fbca71",
                           "borderRadius": 10,
@@ -81,7 +81,7 @@
                 {
                   "width": 8,
                   "presenter": {
-                    "type": "table",
+                    "type": "sheet",
                     "arrayDataQuery": "'Valuator - Top-Down'!A15:D18",
                     "config": {
                       "showColumnHeaders": false,
@@ -114,7 +114,7 @@
                 {
                   "width": 3,
                   "presenter": {
-                    "type": "background",
+                    "type": "view",
                     "config": {
                       "backgroundColor": "#94c0e9",
                       "borderRadius": 10,
@@ -132,7 +132,7 @@
                 {
                   "width": 3,
                   "presenter": {
-                    "type": "background",
+                    "type": "view",
                     "config": {
                       "backgroundColor": "#bfc0ea",
                       "borderRadius": 10,
@@ -150,7 +150,7 @@
                 {
                   "width": 3,
                   "presenter": {
-                    "type": "background",
+                    "type": "view",
                     "config": {
                       "backgroundColor": "#eeed6f",
                       "borderRadius": 10,
@@ -168,7 +168,7 @@
                 {
                   "width": 3,
                   "presenter": {
-                    "type": "background",
+                    "type": "view",
                     "config": {
                       "backgroundColor": "#94c0e9",
                       "borderRadius": 10,
@@ -191,7 +191,7 @@
                 {
                   "width": 8,
                   "presenter": {
-                    "type": "table",
+                    "type": "sheet",
                     "arrayDataQuery": "'Valuator - Bottom-up'!A31:H38",
                     "config": {
                       "showColumnHeaders": false,

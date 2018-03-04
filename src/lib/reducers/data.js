@@ -26,7 +26,7 @@ export default function data(state = initialState, action) {
         isLoading: true
       });
     case RECEIVED_APP_MODEL:
-      const sheet = new Sheet(action.sheet);
+      const sheet = new Sheet(action.model);
       const calc = new Calculator(sheet, getters, updaters);
       return state.merge({
         sheet,

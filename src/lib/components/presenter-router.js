@@ -25,8 +25,8 @@ export default ({ presenter }) => {
   if ( PresenterComponent ) {
     return (
       <PresenterComponent
-        arrayDataQuery={presenter.get('arrayDataQuery')}
-        mapDataQuery={presenter.get('mapDataQuery')}
+        arrayDataQuery={presenter.get('arrayData')}
+        mapDataQuery={presenter.get('mapData')}
         config={presenter.get('config')} /> 
     );
   }

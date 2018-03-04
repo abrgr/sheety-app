@@ -3,20 +3,24 @@ import * as persistence from './persistence';
 import store from './store';
 import { dataActions } from './action-creators';
 
-function getUserValue([doc, field], cellRef) {
+function getUserValue([doc, field, defaultValue], cellRef) {
   persistence.getUserValue(doc, field)
              .then(userValue => {
-               store.dispatch(dataActions.setAsyncCellValue(cellRef, userValue));
+               if ( typeof userValue !== 'undefined' && userValue !== null ) {
+                 store.dispatch(dataActions.setAsyncCellValue(cellRef, userValue));
+               }
              }).catch(err => console.error('Failed to get user value', err));
-  return Calculator.LOADING;
+  return defaultValue;
 }
 
-function getAggregateValue([doc, field, aggregateType], cellRef) {
+function getAggregateValue([doc, field, aggregateType, defaultValue], cellRef) {
   persistence.getAggregateValue(doc, field, aggregateType)
-             .then(userValue => {
-               store.dispatch(dataActions.setAsyncCellValue(cellRef, userValue));
+             .then(aggregateValue => {
+               if ( typeof aggregateValue !== 'undefined' && aggregateValue !== null ) {
+                 store.dispatch(dataActions.setAsyncCellValue(cellRef, aggregateValue));
+               }
              }).catch(err => console.error('Failed to get aggregate value', err));
-  return Calculator.LOADING;
+  return defaultValue;
 }
 
 function setUserValue([doc, field], cellRef, userValue) {

@@ -1,5 +1,5 @@
 import React, { cloneElement, Children } from 'react';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import { CellRefRange, Presenter as PresenterModel } from 'sheety-model';
 import { dataActions } from './action-creators';
@@ -17,14 +17,12 @@ import { PresenterRouter } from './components';
  *  - sheet - Sheet
  *  - config - config parameter
  **/
-export default function presenter({ formatted, configKeyDocs, mapDataDocs, arrayDataDocs }) {
+export default function presenter(config) {
+  const formatted = config && config.formatted;
   return (Component) => (
     (props) => (
       <PresenterContainer
         {...props}
-        configKeyDocs={configKeyDocs}
-        mapDataDocs={mapDataDocs}
-        arrayDataDocs={arrayDataDocs}
         formatted={formatted}>
         <Component />
       </PresenterContainer>
@@ -34,14 +32,14 @@ export default function presenter({ formatted, configKeyDocs, mapDataDocs, array
 
 const PresenterContainer_ = (props) => {
   const mapData = getMapData(props.calc, props.data, props.mapDataQuery);
-  const arrayData = getArrayData(props.calc, props.arrayDataQuery, props.formatted, props.arrayDataDocs);
-  const arrayCells = getArrayCells(props.calc, props.arrayDataQuery, props.arrayDataDocs);
+  const arrayData = getArrayData(props.calc, props.arrayDataQuery, props.formatted);
+  const arrayCells = getArrayCells(props.calc, props.arrayDataQuery);
 
   return cloneElement(
     Children.only(props.children),
     {
-      config: preserveKeys(props.config, props.configKeyDocs),
-      mapData: preserveKeys(mapData, props.mapDataDocs),
+      config: props.config,
+      mapData: mapData,
       arrayData,
       arrayCells,
       arrayDataQuery: props.arrayDataQuery,
@@ -62,19 +60,19 @@ const PresenterContainer = connect(
 )(PresenterContainer_);
 
 function renderPresenter(presenter) {
+  if ( !presenter ) {
+    return null;
+  }
+
   return (
     <PresenterRouter
       presenter={new PresenterModel(presenter)} />
   );
 }
 
-function preserveKeys(map, keySpec) {
-  return map && keySpec && map.filter((_, k) => keySpec.has(k));
-}
-
-function getArrayData(calc, query, formatted, docs) {
-  if ( !docs || !query ) {
-    return new List(); // TODO: logging?
+function getArrayData(calc, query, formatted) {
+  if ( !query ) {
+    return [[]]; // TODO: logging?
   }
 
   const a1Range = CellRefRange.fromA1Ref(query);
@@ -90,9 +88,9 @@ function getArrayData(calc, query, formatted, docs) {
   });
 }
 
-function getArrayCells(calc, query, docs) {
-  if ( !docs ) {
-    return null;
+function getArrayCells(calc, query) {
+  if ( !calc || !query ) {
+    return [[]];
   }
 
   const rangeRef = CellRefRange.fromA1Ref(query);
@@ -120,5 +118,5 @@ function getMapData(calc, data, query) {
 }
 
 function setCellValues(dispatch, sheet, valuesByCellRef) {
-  dispatch(dataActions.setCellValues(sheet, valuesByCellRef));
+  dispatch(dataActions.setCellValues(valuesByCellRef));
 }

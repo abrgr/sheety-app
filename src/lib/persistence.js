@@ -36,11 +36,11 @@ function setFieldValue(collection, pathGenerator, field, value) {
 }
 
 export function getUserValue(doc, field) {
-  return getFieldValue('user-values', (uid) => `${doc}/user-values/${uid}`, field);
+  return getFieldValue('user-values', (uid) => `${doc}/private/${uid}`, field);
 }
 
 export function setUserValue(doc, field, value) {
-  return setFieldValue('user-values', (uid) => `${doc}/user-values/${uid}`, field, value);
+  return setFieldValue('user-values', (uid) => `${doc}/private/${uid}`, field, value);
 }
 
 export function getAggregateValue(doc, field, aggType) {
